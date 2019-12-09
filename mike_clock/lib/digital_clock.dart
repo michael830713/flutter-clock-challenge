@@ -15,14 +15,14 @@ enum _Element {
 }
 
 final _lightTheme = {
-  _Element.background: Color(0xFF81B3FE),
+  _Element.background: Colors.grey[400],
   _Element.text: Colors.white,
-  _Element.shadow: Colors.black,
+  _Element.shadow: Colors.black26,
 };
 
 final _darkTheme = {
   _Element.background: Colors.black,
-  _Element.text: Colors.white,
+  _Element.text: Colors.blue[700],
   _Element.shadow: Color(0xFF174EA6),
 };
 
@@ -79,9 +79,7 @@ class _DigitalClockState extends State<DigitalClock> {
       // Update once per minute. If you want to update every second, use the
       // following code.
       _timer = Timer(
-        Duration(minutes: 1) -
-            Duration(seconds: _dateTime.second) -
-            Duration(milliseconds: _dateTime.millisecond),
+        Duration(minutes: 1) - Duration(seconds: _dateTime.second) - Duration(milliseconds: _dateTime.millisecond),
         _updateTime,
       );
       // Update once per second, but make sure to do it at the beginning of each
@@ -95,23 +93,19 @@ class _DigitalClockState extends State<DigitalClock> {
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).brightness == Brightness.light
-        ? _lightTheme
-        : _darkTheme;
-    final hour =
-        DateFormat(widget.model.is24HourFormat ? 'HH' : 'hh').format(_dateTime);
+    final colors = Theme.of(context).brightness == Brightness.light ? _lightTheme : _darkTheme;
+    final hour = DateFormat(widget.model.is24HourFormat ? 'HH' : 'hh').format(_dateTime);
     final minute = DateFormat('mm').format(_dateTime);
-    final fontSize = MediaQuery.of(context).size.width / 3.5;
-    final offset = -fontSize / 7;
+    final fontSize = MediaQuery.of(context).size.width /3.5;
     final defaultStyle = TextStyle(
       color: colors[_Element.text],
-      fontFamily: 'PressStart2P',
+      fontFamily: 'Rock Salt',
       fontSize: fontSize,
       shadows: [
         Shadow(
           blurRadius: 0,
           color: colors[_Element.shadow],
-          offset: Offset(10, 0),
+          offset: Offset(2, 0),
         ),
       ],
     );
@@ -121,10 +115,11 @@ class _DigitalClockState extends State<DigitalClock> {
       child: Center(
         child: DefaultTextStyle(
           style: defaultStyle,
-          child: Stack(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Positioned(left: offset, top: 0, child: Text(hour)),
-              Positioned(right: offset, bottom: offset, child: Text(minute)),
+              Text('$hour : '),
+              Text(minute),
             ],
           ),
         ),

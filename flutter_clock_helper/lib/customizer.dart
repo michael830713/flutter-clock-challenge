@@ -40,7 +40,7 @@ class ClockCustomizer extends StatefulWidget {
 
 class _ClockCustomizerState extends State<ClockCustomizer> {
   final _model = ClockModel();
-  ThemeMode _themeMode = ThemeMode.light;
+  ThemeMode _themeMode = ThemeMode.dark;
   bool _configButtonShown = false;
 
   @override
@@ -129,16 +129,16 @@ class _ClockCustomizerState extends State<ClockCustomizer> {
                     _model.is24HourFormat = value;
                   });
                 }),
-                _enumMenu('Weather', _model.weatherCondition, WeatherCondition.values, (WeatherCondition condition) {
-                  setState(() {
-                    _model.weatherCondition = condition;
-                  });
-                }),
-                _enumMenu('Units', _model.unit, TemperatureUnit.values, (TemperatureUnit unit) {
-                  setState(() {
-                    _model.unit = unit;
-                  });
-                }),
+//                _enumMenu('Weather', _model.weatherCondition, WeatherCondition.values, (WeatherCondition condition) {
+//                  setState(() {
+//                    _model.weatherCondition = condition;
+//                  });
+//                }),
+//                _enumMenu('Units', _model.unit, TemperatureUnit.values, (TemperatureUnit unit) {
+//                  setState(() {
+//                    _model.unit = unit;
+//                  });
+//                }),
               ],
             ),
           ),
